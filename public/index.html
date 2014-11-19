@@ -7,18 +7,53 @@
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="screen.css">
         <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.4.0/styles/github.min.css">
-        <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:900' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300,900' rel='stylesheet' type='text/css'>
         <script src="//cdn.jsdelivr.net/socket.io-client/1.2.0/socket.io.min.js"></script>
         <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/languages/1c.min.js"></script>
         <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/highlight.min.js"></script>
+        <script src="//cdn.jsdelivr.net/zepto/1.1.3/zepto.min.js"></script>
         <script src="main.js"></script>
     </head>
     <body>
         <header>
-            <img src="monster.svg" alt="OGHRR monster" />
-            <h1>GHRR</h1>
+            <div class="branding">
+                <img src="monster.svg" alt="OGHRR monster" />
+                <h1>GHRR</h1>
+            </div>
+            <h2>
+                <span>Open Github Realtime Relay</span>
+                <span>@</span>
+                <span id="conn-info"></span>
+            </h2>
         </header>
+        <section class="using">
+            <div class="using-server">
+            <h3>Server (Node)</h3>
+            <pre>
+                <code class="javascript" id="using">
+var client = require('socket.io-client');
+var socket = client.connect("127.0.0.1", { port: 3000 });
+socket.on('pushevent', function(event){
+   console.log(event);
+});
+                </code>
+            </pre>
+            </div>
+            <div class="using-client">
+            <h3>Client (Browser)</h3>
+            <pre>
+                <code class="javascript" id="using">
+var socket = io('http://127.0.0.1:3000');
+
+socket.on('pushevent', function (event) {
+    console.log(event);
+});
+                </code>
+            </pre>
+            </div>
+        </section>
         <section class="events">
+            <h3>Livestream</h3>
             <pre>
                 <code id="event-log"></code>
             </pre>

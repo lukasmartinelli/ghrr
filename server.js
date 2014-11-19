@@ -8,6 +8,10 @@ var Bacon = require('baconjs').Bacon;
 var args = process.argv.slice(2);
 var accessToken = args[0];
 var pollInterval = args[1] || 1000;
+var port = args[2] || 3000;
+
+var dns = require('dns');
+var os = require('os');
 
 var client = github.client(accessToken);
 var getEvents = function(callback) {
@@ -25,8 +29,19 @@ var relayEvent = function(event) {
     io.emit(event.type.toLowerCase(), event);
 };
 
+var getInfo = function(req, res) {
+    dns.lookup(os.hostname(), function (err, addr, fam) {
+        res.json({
+            "address": addr,
+            "hostname": os.hostname(),
+            "port": port,
+        });
+    })
+};
+
 app.use(express.static(__dirname + '/public'));
-http.listen(3000);
+app.get('/info', getInfo);
+http.listen(port);
 
 Bacon.interval(pollInterval)
      .flatMap(function() { return Bacon.fromNodeCallback(getEvents); })

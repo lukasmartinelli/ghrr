@@ -1,14 +1,67 @@
 body {
-    background-color: #F8F8F8;
+    font-family: 'PT Sans', sans-serif;
 }
 
 h1 {
     font-size: 5em;
+    font-weight: 900;
     line-height: 1.2em;
     font-family: 'Alegreya Sans SC', sans-serif;
     color: #324d5b;
     margin: 0;
     float: left;
+}
+
+h2 {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 300;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+h3 {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 300;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+pre {
+    margin: 0;
+}
+
+@media (min-width: 55em) {
+    .using-server {
+        float: left;
+        width: 49%;
+    }
+
+    .using-client {
+        margin-left: 2%;
+        float: left;
+        width: 49%;
+    }
+}
+
+.using code {
+    min-height: 8em;
+}
+
+.using-server {
+    margin-top: 1em;
+}
+
+.using-client {
+    margin-top: 1em;
+}
+
+.using:before, .using:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.using:after {
+    clear: both;
 }
 
 header img {
@@ -18,12 +71,12 @@ header img {
     height: 4em;
 }
 
-header:before, header:after {
+.branding:before, .branding:after {
     content: " "; /* 1 */
     display: table; /* 2 */
 }
 
-header:after {
+.branding:after {
     clear: both;
 }
 

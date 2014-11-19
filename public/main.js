@@ -6,17 +6,6 @@ $(function(){
     });
 
     var start = new Date();
-    var initialData = [{
-        label: "all",
-        values: [ {time: new Date(), y: 0} ]
-    }];
-
-    var chart = $('#area-chart').epoch({
-        type: 'time.line',
-        data: initialData,
-        axes: ['left', 'bottom'],
-        ticks: { time: 10, left: 3},
-    });
 
     var socket = io();
 
@@ -28,12 +17,30 @@ $(function(){
      'pullrequestevent', 'pullrequestreviewcommentevent', 'pushevent',
      'releaseevent', 'statusevent'];
 
-    var allCount = 0;
+    var initialData = [];
+    for (i = 0; i < eventTypes.length; i++) {
+        var type = eventTypes[i];
+        initialData.push({
+            label: type,
+            values: [{time: new Date(), y: 0}],
+        });
+    }
+
+    var chart = $('#area-chart').epoch({
+        type: 'time.area',
+        data: initialData,
+        axes: ['left', 'bottom'],
+        ticks: { time: 10, left: 3},
+    });
+    var counts = {};
+    for (i = 0; i < eventTypes.length; i++) {
+        var type = eventTypes[i];
+        counts[type] = 0;
+    }
+
     eventTypes.forEach(function(eventType) {
-        var count = 0;
         socket.on(eventType, function(event){
-            allCount += 1;
-            count += 1;
+            counts[eventType] += 1;
             //var elem = document.getElementById("event-log");
             //var text = JSON.stringify(event, undefined, 2);
 
@@ -45,7 +52,13 @@ $(function(){
     window.setInterval(function() {
         var current = new Date();
         var lapse = new Date(start - current);
-        var dataPoint = [ {time: current, y: allCount } ];
+
+        var dataPoint = [];
+        for (i = 0; i < eventTypes.length; i++) {
+            var count = counts[eventTypes[i]];
+            dataPoint.push({ time: current, y: count });
+        }
+        console.log(dataPoint);
         chart.push(dataPoint);
     }, 1000);
 });

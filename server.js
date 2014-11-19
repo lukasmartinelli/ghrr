@@ -16,13 +16,18 @@ var os = require('os');
 var ratelimit = 0;
 var remaining = 0;
 var reset = 0;
+var requestsSent = 0;
+var eventsReceived = 0;
 var client = github.client(accessToken);
+
 var getEvents = function(callback) {
+    requestsSent += 1;
     client.get('/events', {}, function(err, status, body, headers) {
         console.log(headers);
         ratelimit = headers['x-ratelimit-limit'];
         remaining = headers['x-ratelimit-remaining'];
         reset = headers['x-ratelimit-reset'] * 1000;
+        eventsReceived += body.length;
         callback(err, body);
     });
 };
@@ -55,6 +60,8 @@ var getInfo = function(req, res) {
             "ratelimit": ratelimit,
             "remaining": remaining,
             "poll_interval": pollInterval,
+            "requests_sent": requestsSent,
+            "events_received": eventsReceived,
             "reset": reset,
         });
     });

@@ -1,3 +1,32 @@
+body {
+    background-color: #F8F8F8;
+}
+
+h1 {
+    font-size: 5em;
+    line-height: 1.2em;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    color: #324d5b;
+    margin: 0;
+    float: left;
+}
+
+header img {
+    margin-top: 0.8em;
+    float: left;
+    width: 4em;
+    height: 4em;
+}
+
+header:before, header:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+header:after {
+    clear: both;
+}
+
 .events {
     font-family: 'Droid Sans Mono', serif;
 }

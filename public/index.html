@@ -5,29 +5,12 @@
         <title>Use socket.io to get Github Events in Realtime</title>
         <link href='http://fonts.googleapis.com/css?family=PT+Serif:700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="screen.css">
         <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.4.0/styles/github.min.css">
         <script src="//cdn.jsdelivr.net/socket.io-client/1.2.0/socket.io.min.js"></script>
         <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/languages/1c.min.js"></script>
         <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/highlight.min.js"></script>
-        <style type="text/css" media=screen>
-            .events {
-                font-family: 'Droid Sans Mono', serif;
-            }
-        </style>
-        <script>
-            hljs.initHighlightingOnLoad();
-            var socket = io();
-
-            socket.on('pushevent', function(event){
-                console.log(event);
-
-                var elem = document.getElementById("event-log");
-                var text = JSON.stringify(event, undefined, 2);
-
-                elem.innerHTML = text;
-                hljs.highlightBlock(elem);
-            });
-        </script>
+        <script src="main.js"></script>
     </head>
     <body>
         <header>

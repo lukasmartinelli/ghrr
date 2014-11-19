@@ -1,5 +1,6 @@
 var github = require('octonode');
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var Bacon = require('baconjs').Bacon;
@@ -24,10 +25,7 @@ var relayEvent = function(event) {
     io.emit(event.type.toLowerCase(), event);
 };
 
-app.get('/', function(req, res) {
-    res.sendFile('index.html', { root: __dirname });
-});
-
+app.use(express.static(__dirname + '/public'));
 http.listen(3000);
 
 Bacon.interval(pollInterval)

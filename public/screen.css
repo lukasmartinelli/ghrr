@@ -30,6 +30,41 @@ pre {
     margin: 0;
 }
 
+#event-types > article {
+    float: left;
+    margin: 0.4em;
+    width: 5em;
+    background-color: #324d5b;
+    color: #fff;
+    height: 5em;
+    padding: 0.2em;
+}
+
+#event-types:before, #event-types:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+#event-types:after {
+    clear: both;
+}
+
+h4 {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    text-align: center;
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 300;
+}
+
+.type {
+    font-family: 'Droid Sans Mono', sans-serif;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+
 @media (min-width: 55em) {
     .using-server {
         float: left;

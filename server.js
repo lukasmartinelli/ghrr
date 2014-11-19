@@ -13,15 +13,32 @@ var port = args[2] || 3000;
 var dns = require('dns');
 var os = require('os');
 
+var ratelimit = 0;
+var remaining = 0;
+var reset = 0;
 var client = github.client(accessToken);
 var getEvents = function(callback) {
     client.get('/events', {}, function(err, status, body, headers) {
+        console.log(headers);
+        ratelimit = headers['x-ratelimit-limit'];
+        remaining = headers['x-ratelimit-remaining'];
+        reset = headers['x-ratelimit-reset'] * 1000;
         callback(err, body);
     });
 };
 
 var compareEvents = function(event, other) {
     return event.id === other.id;
+};
+
+var relayInfo = function() {
+    io.emit("info", {
+        "ratelimit": ratelimit,
+        "remaining": remaining,
+        "poll_interval": pollInterval,
+        "reset": reset,
+    });
+
 };
 
 var relayEvent = function(event) {
@@ -35,14 +52,18 @@ var getInfo = function(req, res) {
             "address": addr,
             "hostname": os.hostname(),
             "port": port,
+            "ratelimit": ratelimit,
+            "remaining": remaining,
+            "poll_interval": pollInterval,
+            "reset": reset,
         });
-    })
+    });
 };
-
 app.use(express.static(__dirname + '/public'));
 app.get('/info', getInfo);
 http.listen(port);
 
+Bacon.interval(1000).onValue(relayInfo);
 Bacon.interval(pollInterval)
      .flatMap(function() { return Bacon.fromNodeCallback(getEvents); })
      .flatMap(Bacon.fromArray)

@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var Bacon = require('baconjs').Bacon;
+var CBuffer = require('CBuffer');
 
 var args = process.argv.slice(2);
 var accessToken = args[0];
@@ -23,15 +24,11 @@ var connectionInfo = function(callback) {
     });
 };
 
-var relayInfo = function() {
-    io.emit("info", client.getInfo());
-};
-
-var relayEvent = function(event) {
-    var timestamp = new Date(event.created_at).toLocaleTimeString();
-    console.log([event.id, event.type, timestamp].join("\t"));
-    io.emit(event.type.toLowerCase(), event);
-};
+var compareEvents = function(a, b) {
+    if(a.id < b.id) { return -1; }
+    if(a.id > b.id) { return 1; }
+    return 0;
+}
 
 var duplicates = 0;
 var getInfo = function(req, res) {
@@ -45,48 +42,36 @@ var getInfo = function(req, res) {
     });
 };
 
+var eventBuffer = new CBuffer({}, {}, {}, {}, {});
+Bacon.interval(pollInterval).onValue(function() { eventBuffer.push({}); });
+var isUnique = function(event) {
+    return !eventBuffer.some(function(ids) {
+        if(event.id in ids) {
+            duplicates += 1;
+            ids[event.id] += 1;
+            return true;
+        } else {
+            ids[event.id] = 1;
+            return false;
+        }
+    });
+}
+
 app.use(express.static(__dirname + '/public'));
 app.get('/info', getInfo);
 http.listen(port);
 
-var compareEvents = function(a, b) {
-    if(a.id < b.id) { return -1; }
-    if(a.id > b.id) { return 1; }
-    return 0;
-}
-
-var createRingBuffer = function(length){
-  var pointer = 0, buffer = []; 
-  return {
-    get  : function(key){return buffer[key];},
-    push : function(item){
-      buffer[pointer] = item;
-      pointer = (length + pointer +1) % length;
-    }
-  };
+var relayInfo = function() {
+    io.emit("info", client.getInfo());
 };
 
-var eventBuffer = createRingBuffer(5);
-for(var i = 0; i < 5; i++) {
-    eventBuffer.push({}); 
-}
-
-var isUnique = function(event) {
-    for(var i = 0; i < 5; i++) {
-        var ids = eventBuffer.get(i);
-        if(event.id in ids) {
-            duplicates += 1;
-            ids[event.id] += 1;
-            return false;
-        } else {
-            ids[event.id] = 1;
-            return true;
-        }
-    }
-}
+var relayEvent = function(event) {
+    var timestamp = new Date(event.created_at).toLocaleTimeString();
+    console.log([event.id, event.type, timestamp].join("\t"));
+    io.emit(event.type.toLowerCase(), event);
+};
 
 Bacon.interval(1000).onValue(relayInfo);
-Bacon.interval(pollInterval).onValue(function() { eventBuffer.push({}); });
 Bacon.interval(pollInterval)
      .flatMap(function() { return Bacon.fromCallback(client.getEvents); })
      .flatMap(Bacon.fromArray)

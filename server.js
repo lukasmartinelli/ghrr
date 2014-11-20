@@ -18,6 +18,7 @@ var remaining = 0;
 var reset = 0;
 var requestsSent = 0;
 var eventsReceived = 0;
+var duplicates = 0;
 var client = github.client(accessToken);
 
 var getEvents = function(callback) {
@@ -43,12 +44,27 @@ var relayInfo = function() {
         "remaining": remaining,
         "poll_interval": pollInterval,
         "reset": reset,
+        "duplicates": duplicates,
     });
 
 };
 
+var previousIds = {};
+var removeDuplicates = function(event) {
+    if(event.id in previousIds) {
+        duplicates += 1;
+        previousIds[event.id] += 1;
+        return false;
+    } else {
+        previousIds[event.id] = 1;
+        return true;
+    }
+};
+
 var relayEvent = function(event) {
-    console.log([event.id, event.type, event.created_at].join("\t"));
+    console.log([event.id, event.type,
+                 event.created_at, previousIds[event.id]
+                ].join("\t"));
     io.emit(event.type.toLowerCase(), event);
 };
 
@@ -64,6 +80,7 @@ var getInfo = function(req, res) {
             "requests_sent": requestsSent,
             "events_received": eventsReceived,
             "reset": reset,
+            "duplicates": duplicates,
         });
     });
 };
@@ -75,4 +92,5 @@ Bacon.interval(1000).onValue(relayInfo);
 Bacon.interval(pollInterval)
      .flatMap(function() { return Bacon.fromNodeCallback(getEvents); })
      .flatMap(Bacon.fromArray)
+     .filter(removeDuplicates)
      .onValue(relayEvent);

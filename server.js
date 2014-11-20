@@ -55,37 +55,40 @@ var compareEvents = function(a, b) {
     return 0;
 }
 
-var findAndCountDuplicates = function(a, b) {
-    if(a.id === b.id) {
-        duplicates += 1;
-        return true;
+var createRingBuffer = function(length){
+  var pointer = 0, buffer = []; 
+  return {
+    get  : function(key){return buffer[key];},
+    push : function(item){
+      buffer[pointer] = item;
+      pointer = (length + pointer +1) % length;
     }
-    return false;
+  };
 };
 
-var ids = {};
-var findAllDuplicatesNonScalableAndMemoryLeaky = function(event) {
-    if(event.id in ids) {
-        duplicates += 1;
-        ids[event.id] += 1;
-        return false;
-    } else {
-        ids[event.id] = 1;
-        return true;
-    }
-};
+var eventBuffer = createRingBuffer(5);
+for(var i = 0; i < 5; i++) {
+    eventBuffer.push({}); 
+}
 
-var filterStream = function(stream) {
-    return stream
-         .bufferWithTime(2 * pollInterval)
-         .map(function(events) { return events.sort(compareEvents); })
-         .flatMap(Bacon.fromArray)
-         .skipDuplicates(findAndCountDuplicates)
-};
+var isUnique = function(event) {
+    for(var i = 0; i < 5; i++) {
+        var ids = eventBuffer.get(i);
+        if(event.id in ids) {
+            duplicates += 1;
+            ids[event.id] += 1;
+            return false;
+        } else {
+            ids[event.id] = 1;
+            return true;
+        }
+    }
+}
 
 Bacon.interval(1000).onValue(relayInfo);
+Bacon.interval(pollInterval).onValue(function() { eventBuffer.push({}); });
 Bacon.interval(pollInterval)
      .flatMap(function() { return Bacon.fromCallback(client.getEvents); })
      .flatMap(Bacon.fromArray)
-     .filter(findAllDuplicatesNonScalableAndMemoryLeaky)
+     .filter(isUnique)
      .onValue(relayEvent);

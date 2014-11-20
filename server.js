@@ -23,11 +23,12 @@ var client = github.client(accessToken);
 var getEvents = function(callback) {
     requestsSent += 1;
     client.get('/events', {}, function(err, status, body, headers) {
-        console.log(headers);
-        ratelimit = headers['x-ratelimit-limit'];
-        remaining = headers['x-ratelimit-remaining'];
-        reset = headers['x-ratelimit-reset'] * 1000;
-        eventsReceived += body.length;
+        if(!err) {
+            ratelimit = headers['x-ratelimit-limit'];
+            remaining = headers['x-ratelimit-remaining'];
+            reset = headers['x-ratelimit-reset'] * 1000;
+            eventsReceived += body.length;
+        }
         callback(err, body);
     });
 };

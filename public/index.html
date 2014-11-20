@@ -2,22 +2,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Use socket.io to get Github Events in Realtime</title>
+        <title>Open Github Realtime Relay</title>
         <link href='http://fonts.googleapis.com/css?family=PT+Serif:700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="screen.css">
         <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.4.0/styles/github.min.css">
         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300,900' rel='stylesheet' type='text/css'>
         <link href='//cdnjs.cloudflare.com/ajax/libs/epoch/0.5.2/epoch.min.css' rel='stylesheet' type='text/css'>
-        <script src="//cdn.jsdelivr.net/socket.io-client/1.2.0/socket.io.min.js"></script>
-        <script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>
-        <script src="//cdn.jsdelivr.net/d3js/3.4.13/d3.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/epoch/0.5.2/epoch.min.js"></script>
-        <script src="//cdn.jsdelivr.net/underscorejs/1.7.0/underscore-min.js"></script>
-        <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/highlight.min.js"></script>
-        <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/languages/1c.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-debug.js"></script>
-        <script src="main.js"></script>
     </head>
     <body>
         <header>
@@ -33,7 +24,6 @@
         </header>
         <section class="graph">
             <div id="area-chart" class="epoch category10" style="height: 200px;"></div>
-            <div id="gaugeChart" class="epoch gauge-small"></div>
             <div id="event-types" data-bind="foreach: eventtypes">
                 <article data-bind="style: { backgroundColor: color }" >
                     <h4 data-bind="text: countPerSecond() + '/s'"></h4>
@@ -41,6 +31,7 @@
                 </article>
             </div>
         </section>
+        <div id="gaugeChart" class="epoch gauge-small"></div>
         <section class="using">
             <div class="using-server">
             <h3>Server (Node)</h3>
@@ -73,6 +64,15 @@ socket.on('pushevent', function (event) {
                 <code id="event-log"></code>
             </pre>
         </section>
+        <script src="//cdn.jsdelivr.net/socket.io-client/1.2.0/socket.io.min.js"></script>
+        <script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//cdn.jsdelivr.net/d3js/3.4.13/d3.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/epoch/0.5.2/epoch.min.js"></script>
+        <script src="//cdn.jsdelivr.net/underscorejs/1.7.0/underscore-min.js"></script>
+        <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/highlight.min.js"></script>
+        <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/languages/1c.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-debug.js"></script>
+        <script src="main.js"></script>
     </body>
 </html>
 

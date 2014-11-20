@@ -50,11 +50,12 @@ $(function(){
          { name: 'issuesevent', label: 'issues',
            color: '#8c564b', plottable: true},
          { name: 'pullrequestreviewcommentevent', label: 'review comment',
-            color: '#e377c2', plottable: true},
-         { name: 'forkevent', label: 'fork'},
+           color: '#e377c2', plottable: true},
+         { name: 'deleteevent', label: 'delete',
+           color: '#7f7f7f', plottable: true },
+         { name: 'forkevent', label: 'fork', color: '#bcbd22', plottable: true },
          { name: 'commitcommentevent', label: 'commit comment'},
          { name: 'followevent', label: 'follow'},
-         { name: 'deleteevent', label: 'delete'},
          { name: 'gollumevent', label: 'gollum'},
          { name: 'memberevent', label: 'member'},
          { name: 'downloadevent', label: 'download'},
@@ -72,7 +73,7 @@ $(function(){
         return _.map(types, function(type) {
             return new EventType(type.name, type.label,
                                  type.plottable || false,
-                                 type.color || '#324d5b');
+                                 type.color || '#759BB3');
         });
     };
 
@@ -92,9 +93,8 @@ $(function(){
     };
 
     var chart = $('#area-chart').epoch({
-        type: 'time.line',
+        type: 'time.area',
         data: getInitialData(),
-        windowSize: 100,
         axes: ['left', 'bottom'],
         ticks: { time: 10, left: 3},
     });

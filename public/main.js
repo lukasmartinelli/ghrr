@@ -37,7 +37,7 @@ $(function(){
     var EventTypeList = function(eventTypes) {
         this.eventtypes = ko.observableArray(eventTypes);
     };
-    
+
     var types = [
          { name: 'pushevent', label: 'push', color: '#1f77b4', plottable: true },
          { name: 'issuecommentevent', label: 'issue comment',
@@ -96,7 +96,8 @@ $(function(){
         type: 'time.area',
         data: getInitialData(),
         axes: ['left', 'bottom'],
-        ticks: { time: 10, left: 3},
+        ticks: { time: 10, left: 5},
+        tickFormats: { bottom: function(d) { return d.toLocaleTimeString(); } },
     });
 
     var gauge = $('#gaugeChart').epoch({
@@ -123,7 +124,7 @@ $(function(){
         var requestsRemaining = info.remaining;
         var requestsTodo = Math.floor(remainingTime / maxInterval);
         var currentUsage = requestsTodo / requestsRemaining;
-      
+
         var requestsMade = (new Date() - start) / currentInterval;
         var maxEvents = Math.floor(requestsMade * 30);
         var currentEvents = _.chain(eventTypeList.eventtypes())

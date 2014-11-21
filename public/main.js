@@ -93,7 +93,7 @@ $(function(){
     };
 
     var chart = $('#area-chart').epoch({
-        type: 'time.bar',
+        type: 'time.area',
         data: getInitialData(),
         axes: ['left', 'bottom'],
         ticks: { time: 10, left: 5},

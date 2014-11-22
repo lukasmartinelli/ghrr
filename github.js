@@ -31,7 +31,7 @@ module.exports = function(accessToken) {
             log.requests += 1;
             request(options, function(error, response, body) {
                 if(error) {
-                    console.log(err);
+                    console.error(error);
                 }
                 if(response.statusCode == 304) {
                     callback([]);

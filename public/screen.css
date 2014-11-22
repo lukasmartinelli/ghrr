@@ -1,3 +1,4 @@
+/*===TITLES AND FONTS===*/
 body {
     font-family: 'PT Sans', sans-serif;
 }
@@ -9,7 +10,6 @@ h1 {
     font-family: 'Alegreya Sans SC', sans-serif;
     color: #324d5b;
     margin: 0;
-    float: left;
 }
 
 h2 {
@@ -26,6 +26,14 @@ h3 {
     margin: 0;
 }
 
+h4 {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    text-align: center;
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 300;
+}
+
 pre {
     margin: 0;
 }
@@ -34,6 +42,32 @@ section {
     padding: 0.5em;
 }
 
+/*===BUTTONS===*/
+.button {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 1.2em;
+    padding: 0.5em;
+    text-decoration: none;
+    background-color: #A6BFCE;
+    color: rgba(0, 0, 0, 0.87);
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.24);
+    border-radius: 2px;
+}
+
+.button:hover {
+    background-color: #4D7995;
+}
+
+/*===GITHUB BADGE===*/
+.github {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+}
+
+/*===EVENT TYPES===*/
 #event-types > article {
     float: left;
     margin: 0.4em;
@@ -47,80 +81,53 @@ section {
 }
 
 #event-types:before, #event-types:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+    content: " ";
+    display: table;
 }
 
 #event-types:after {
     clear: both;
 }
 
-h4 {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    text-align: center;
-    margin: 0;
-    font-size: 1.8em;
-    font-weight: 300;
-}
-
 .type {
-    font-family: 'Droid Sans Mono', sans-serif;
+    font-family: monospace; 
     width: 100%;
     text-align: center;
-    font-size: 0.8em;
+    font-size: 1.2em;
 }
 
+/*===CHART===*/
+.chart {
+    margin-top: 1em;
+}
+
+/*===TUTORIAL===*/
+.tutorial code {
+    min-height: 8em;
+}
+
+.tutorial-server, .tutorial-client {
+    margin-top: 1em;
+}
+
+.tutorial:before, .tutorial:after {
+    content: " ";
+    display: table;
+}
+
+.tutorial:after {
+    clear: both;
+}
 
 @media (min-width: 55em) {
-    .using-server {
+    .tutorial-server {
         float: left;
         width: 49%;
     }
 
-    .using-client {
+    .tutorial-client {
         margin-left: 2%;
         float: left;
         width: 49%;
     }
-}
-
-.using code {
-    min-height: 8em;
-}
-
-.using-server {
-    margin-top: 1em;
-}
-
-.using-client {
-    margin-top: 1em;
-}
-
-.using:before, .using:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
-
-.using:after {
-    clear: both;
-}
-
-header img {
-    margin-top: 0.8em;
-    float: left;
-    width: 4em;
-    height: 4em;
-}
-
-.branding:before, .branding:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
-
-.branding:after {
-    clear: both;
-}
-
-.events {
-    font-family: 'Droid Sans Mono', serif;
 }

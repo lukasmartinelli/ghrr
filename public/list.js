@@ -41,6 +41,7 @@ var EventTypeList = function() {
         this.updateDate = ko.observable(new Date());
         this.plottable = plottable;
         this.color = color;
+        this.resets = 0;
 
         this.countPerSecond = ko.computed(function() {
             var diff = (this.updateDate() - this.startDate) / 1000;
@@ -55,6 +56,11 @@ var EventTypeList = function() {
         };
 
         this.reset = function() {
+            this.resets += 1;
+            if(this.resets % 10 == 0) {
+                this.startDate = new Date();
+                this.allCount(0);
+            }
             this.count = 0;
         }
     };

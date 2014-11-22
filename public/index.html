@@ -13,33 +13,19 @@
     <body>
         <header>
             <div class="branding">
-                <img src="monster.svg" alt="OGHRR monster" />
-                <h1>GHRR</h1>
+                <h1>Github Realtime Relay</h1>
             </div>
-            <h2>
-                <span>Open Github Realtime Relay</span>
-                <span>@</span>
-                <span id="conn-info"></span>
-            </h2>
         </header>
-        <section class="graph">
-            <div id="event-chart" class="epoch category10" style="height: 200px;"></div>
-            <div id="event-types" data-bind="foreach: types">
-                <article data-bind="style: { backgroundColor: color }" >
-                    <h4 data-bind="text: countPerSecond() + '/s'"></h4>
-                    <div class="type" data-bind="text: label"></div>
-                </article>
-            </div>
-        </section>
         <section class="using">
             <div class="using-server">
             <h3>Server (Node)</h3>
             <pre>
                 <code class="javascript" id="using">
-var client = require('socket.io-client');
-var socket = client.connect("127.0.0.1", { port: 3000 });
+var url = 'http://oghrr.lukasmartinelli.ch';
+var socket = require('socket.io-client')(url);
+
 socket.on('pushevent', function(event){
-   console.log(event);
+   console.log('Push: ' + event.repository.full_name);
 });
                 </code>
             </pre>
@@ -48,13 +34,24 @@ socket.on('pushevent', function(event){
             <h3>Client (Browser)</h3>
             <pre>
                 <code class="javascript" id="using">
-var socket = io('http://127.0.0.1:3000');
+var url = 'http://oghrr.lukasmartinelli.ch';
+var socket = io(url);
 
 socket.on('pushevent', function (event) {
-    console.log(event);
+   console.log('Push: ' + event.repository.full_name);
 });
                 </code>
             </pre>
+            </div>
+        </section>
+        <section class="graph">
+            <h3>Live Statistics</h3>
+            <div id="event-chart" class="epoch category10" style="height: 200px;"></div>
+            <div id="event-types" data-bind="foreach: types">
+                <article data-bind="style: { backgroundColor: color }" >
+                    <h4 data-bind="text: countPerSecond() + '/s'"></h4>
+                    <div class="type" data-bind="text: label"></div>
+                </article>
             </div>
         </section>
         <section class="events">

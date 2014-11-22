@@ -11,7 +11,7 @@
             type.increment(typeCounts[type.name]);
         });
     });
-
+    
     window.setInterval(function() {
         var current = new Date();
         var dataPoint = _.chain(list.types())

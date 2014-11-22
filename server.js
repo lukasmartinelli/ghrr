@@ -21,6 +21,8 @@ var client = require('./github')(accessToken);
 
 var ioStats = io.of('/statistics');
 var ioEvents = io.of('/events');
+
+io.set('origins', '*:*');
 app.use(express.static(__dirname + '/public'));
 http.listen(port);
 

@@ -36,7 +36,7 @@ io('/statistics').on('types', function(typeCounts) {
 }
 ```
 
-## Web Application 
+## Web Application
 
 You need to add the socket.io-client to your web application.
 
@@ -45,7 +45,8 @@ You need to add the socket.io-client to your web application.
 ```
 
 You can now connect directly to the public websocket. We support
-CORS for all domains so you should not encounter any problems.
+[CORS](http://www.html5rocks.com/en/tutorials/cors/)
+for all domains so you should not encounter any problems.
 
 ```javascript
 var url = 'ghrr.lukasmartinelli.ch/events';

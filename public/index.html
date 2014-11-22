@@ -23,15 +23,14 @@
             </h2>
         </header>
         <section class="graph">
-            <div id="area-chart" class="epoch category10" style="height: 200px;"></div>
-            <div id="event-types" data-bind="foreach: eventtypes">
+            <div id="event-chart" class="epoch category10" style="height: 200px;"></div>
+            <div id="event-types" data-bind="foreach: types">
                 <article data-bind="style: { backgroundColor: color }" >
                     <h4 data-bind="text: countPerSecond() + '/s'"></h4>
                     <div class="type" data-bind="text: label"></div>
                 </article>
             </div>
         </section>
-        <div id="gaugeChart" class="epoch gauge-small"></div>
         <section class="using">
             <div class="using-server">
             <h3>Server (Node)</h3>
@@ -68,10 +67,12 @@ socket.on('pushevent', function (event) {
         <script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>
         <script src="//cdn.jsdelivr.net/d3js/3.4.13/d3.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/epoch/0.5.2/epoch.min.js"></script>
-        <script src="//cdn.jsdelivr.net/underscorejs/1.7.0/underscore-min.js"></script>
+        <script src="//cdn.jsdelivr.net/lodash/2.4.1/lodash.min.js"></script>
         <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/highlight.min.js"></script>
         <script src="//cdn.jsdelivr.net/highlight.js/8.4.0/languages/1c.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-debug.js"></script>
+        <script src="list.js"></script>
+        <script src="chart.js"></script>
         <script src="main.js"></script>
     </body>
 </html>

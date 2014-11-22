@@ -1,19 +1,14 @@
-$(function(){
-    hljs.initHighlightingOnLoad();
+(function(){
     var list = EventTypeList();
-    var chart = EventTypeChart('#event-chart', list.types());
-    var socket = io();
+    var chart = EventTypeChart(document.getElementById('event-chart'),
+                               list.types());
 
-    $.getJSON('/info', function(info) {
-        $('#conn-info').text(info.address + ":" + info.port);
-    });
-
-
+    hljs.initHighlightingOnLoad();
     ko.applyBindings(list);
 
-    list.types().forEach(function(type) {
-        socket.on(type.name, function(event){
-            type.increment();
+    io('/statistics').on('types', function(typeCounts) {
+        list.types().forEach(function (type) {
+            type.increment(typeCounts[type.name]);
         });
     });
 
@@ -28,4 +23,4 @@ $(function(){
                          }).value();
         chart.push(dataPoint);
     }, 1000);
-});
+})();

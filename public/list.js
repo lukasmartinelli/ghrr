@@ -48,10 +48,10 @@ var EventTypeList = function() {
             return isNaN(avg) || !isFinite(avg) ? 0 : avg.toFixed(2);
         }.bind(this));
 
-        this.increment = function() {
+        this.increment = function(count) {
             this.updateDate(new Date());
-            this.count += 1;
-            this.allCount(this.allCount() + 1);
+            this.count += count;
+            this.allCount(this.allCount() + count);
         };
 
         this.reset = function() {

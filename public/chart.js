@@ -1,4 +1,4 @@
-var EventTypeChart = function(chartPlaceholder, eventTypes){
+var EventTypeChart = function(el, eventTypes){
     var chartData = _.chain(eventTypes)
                      .filter(function(type) { return type.plottable; })
                      .map(function(type) {
@@ -7,8 +7,8 @@ var EventTypeChart = function(chartPlaceholder, eventTypes){
                              values: [{ time: new Date(), y: type.count }]
                          };
                      }).value();
-
-    return $(chartPlaceholder).epoch({
+    
+    return $(el).epoch({
         type: 'time.bar',
         data: chartData,
         axes: ['left', 'bottom'],

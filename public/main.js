@@ -6,7 +6,7 @@
     hljs.initHighlightingOnLoad();
     ko.applyBindings(list);
 
-    io('ghrr.lukasmartinelli.ch/statistics').on('types', function(typeCounts) {
+    io('/statistics').on('types', function(typeCounts) {
         list.types().forEach(function (type) {
             type.increment(typeCounts[type.name]);
         });

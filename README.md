@@ -4,7 +4,6 @@ Github Realtime Relay
 Receive all Github events in realtime with [socket.io](http://socket.io/) from the [Github Realtime Relay](http://oghrr.lukasmartinelli.ch/).
 This is probably the simplest way to create a realtime application on top of Github.
 
-![Screenshot of Github Realtime Relay](screenshot.png)
 
 ## Server (Node)
 
@@ -74,3 +73,7 @@ Run the github realtime relay with a poll rate of `1000` and on port `80`.
 npm install ghrr
 npm run start "YOUR GITHUB ACCESS TOKEN" 1000 80
 ```
+
+Now you can visit the  status page displaying live statistics.
+
+ ![Screenshot of Github Realtime Relay](screenshot.png)

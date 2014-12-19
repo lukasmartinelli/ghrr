@@ -5,9 +5,9 @@ var io = require('socket.io')(http);
 var Bacon = require('baconjs').Bacon;
 
 const args = process.argv.slice(2);
-const accessToken = args[0];
-const pollInterval = args[1] || 1000;
-const port = args[2] || 3000;
+const accessToken = process.env.GITHUB_TOKEN
+const pollInterval = process.env.POLL_INTERVAL || 1000;
+const port = process.env.VCAP_APP_PORT || 3000;
 const types = ['pushevent', 'issuecommentevent', 'createevent', 'watchevent',
              'pullrequestevent', 'issuesevent', 'pullrequestreviewcommentevent',
              'deleteevent', 'forkevent', 'commitcommentevent', 'followevent',

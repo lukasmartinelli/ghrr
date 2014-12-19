@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Open Github Realtime Relay</title>
+        <title>Github Realtime Relay</title>
         <link href='http://fonts.googleapis.com/css?family=PT+Serif:700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="screen.css">
         <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.4.0/styles/github.min.css">
@@ -23,7 +23,7 @@
                 <h3>Server (Node)</h3>
                 <pre>
                     <code class="javascript">
-var url = 'ghrr.lukasmartinelli.ch:80/events';
+var url = 'ghrr.beta.swisscloud.io:80/events';
 var socket = require('socket.io-client')(url);
 
 socket.on('pushevent', function(event){
@@ -39,7 +39,7 @@ socket.on('pushevent', function(event){
                 <h3>Web Application</h3>
                 <pre>
                     <code class="javascript">
-var url = 'http://ghrr.lukasmartinelli.ch:80/events';
+var url = 'http://ghrr.beta.swisscloud.io:80/events';
 var socket = io(url);
 
 socket.on('pushevent', function (event) {

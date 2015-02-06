@@ -1,5 +1,4 @@
-Github Realtime Relay
-======================
+# Github Realtime Relay [![Build Status](https://travis-ci.org/lukasmartinelli/ghrr.svg)](https://travis-ci.org/lukasmartinelli/ghrr)
 
 Receive all Github events in realtime with [socket.io](http://socket.io/) from the [Github Realtime Relay](http://ghrr.lukasmartinelli.ch).
 This is probably the simplest way to create a realtime application on top of Github.

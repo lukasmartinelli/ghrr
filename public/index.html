@@ -23,7 +23,7 @@
                 <h3>Server (Node)</h3>
                 <pre>
                     <code class="javascript">
-var url = 'ghrr.beta.swisscloud.io:80/events';
+var url = 'ghrr.lukasmartinelli.ch:80/events';
 var socket = require('socket.io-client')(url);
 
 socket.on('pushevent', function(event){
@@ -39,7 +39,7 @@ socket.on('pushevent', function(event){
                 <h3>Web Application</h3>
                 <pre>
                     <code class="javascript">
-var url = 'http://ghrr.beta.swisscloud.io:80/events';
+var url = 'http://ghrr.lukasmartinelli.ch:80/events';
 var socket = io(url);
 
 socket.on('pushevent', function (event) {

@@ -1,0 +1,11 @@
+deploy:
+  provider:
+    provider: cloudfoundry
+  api: https://api.appcloud-nova.swisscom.com
+  username: me@lukasmartinelli.ch
+  password:
+    secure: ehyS8OowAon8uXmdC06iff5uq/MmCVDH+qeez9nu1RmABj4mdN6GDc1Xlca82wD1SRMULAPTXkTwcX9mvpQgjZa1eLIv+QtgSVgFOtnvFLQCsn4ogP5kBfYUk1X8JPGYOY30aCWNrV/zYONhuFF7f7x76QkR0lttWcYEv10/O4Q=
+  organization: lukasmartinelli
+  space: DEV
+  on:
+    repo: lukasmartinelli/ghrr

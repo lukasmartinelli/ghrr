@@ -1,3 +1,4 @@
+'use strict';
 var request = require('request');
 
 module.exports = function(accessToken) {
@@ -6,7 +7,7 @@ module.exports = function(accessToken) {
         headers: {
             'User-Agent': 'OGHHR',
             'Authorization': 'token ' + accessToken,
-            'If-None-Match': '""',
+            'If-None-Match': '""'
         }
     };
     var log = {
@@ -16,10 +17,10 @@ module.exports = function(accessToken) {
             reset: 0
         },
         events: 0,
-        requests: 0,
+        requests: 0
     };
     var parseInfo = function(headers, events) {
-            options.headers['If-None-Match'] = headers['etag'];
+            options.headers['If-None-Match'] = headers.etag;
             log.ratelimit.limit = headers['x-ratelimit-limit'];
             log.ratelimit.remaining = headers['x-ratelimit-remaining'];
             log.ratelimit.reset = headers['x-ratelimit-reset'] * 1000;
@@ -27,13 +28,13 @@ module.exports = function(accessToken) {
             log.events += events.length;
     };
     return {
-        getEvents : function(callback) {
+        getEvents: function(callback) {
             log.requests += 1;
             request(options, function(error, response, body) {
                 if(error) {
                     console.error(error);
                 }
-                if(response.statusCode == 304) {
+                if(response.statusCode === 304) {
                     callback([]);
                 }
                 if(response.statusCode === 200) {

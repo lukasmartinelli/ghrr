@@ -1,6 +1,6 @@
 # Github Realtime Relay [![Build Status](https://travis-ci.org/lukasmartinelli/ghrr.svg)](https://travis-ci.org/lukasmartinelli/ghrr) [![Code Climate](https://codeclimate.com/github/lukasmartinelli/ghrr/badges/gpa.svg)](https://codeclimate.com/github/lukasmartinelli/ghrr)
 
-Receive all Github events in realtime with [socket.io](http://socket.io/) from the [Github Realtime Relay](http://ghrr.lukasmartinelli.ch).
+Receive all Github events in realtime with [socket.io](http://socket.io/) from the [Github Realtime Relay](http://ghrr.gq).
 This is probably the simplest way to create a realtime application on top of Github.
 
 
@@ -16,7 +16,7 @@ To receive all events you can hook onto the `/events` namespace
 and subscribe to a [specific Github Event](https://developer.github.com/v3/activity/events/types/). Please use lower case for subscribing to the event types.
 
 ```javascript
-var url = 'http://ghrr.lukasmartinelli.ch:80/events';
+var url = 'http://ghrr.gq:80/events';
 var socket = require('socket.io-client')(url);
 
 socket.on('pushevent', function(event){
@@ -29,7 +29,7 @@ There is also a `/statistics` namespace used by the GHRR web interface that
 sends usage statistics for the Event Types.
 
 ```javascript
-var url = 'http://ghrr.lukasmartinelli.ch:80';
+var url = 'http://ghrr.gq:80';
 var io = require('socket.io-client')(url);
 io('/statistics').on('types', function(typeCounts) {
     console.log('PushEvents: ' + typeCounts.pushevent);
@@ -49,7 +49,7 @@ You can now connect directly to the public websocket. We support
 for all domains so you should not encounter any problems.
 
 ```javascript
-var url = 'http://ghrr.lukasmartinelli.ch:80/events';
+var url = 'http://ghrr.gq:80/events';
 var socket = io(url);
 
 socket.on('pushevent', function (event) {

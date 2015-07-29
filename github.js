@@ -5,7 +5,7 @@ module.exports = function(accessToken) {
     var options = {
         url: 'https://api.github.com/events',
         headers: {
-            'User-Agent': 'OGHHR',
+            'User-Agent': 'GHHR',
             'Authorization': 'token ' + accessToken,
             'If-None-Match': '""'
         }

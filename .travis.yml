@@ -7,6 +7,7 @@ before_install:
 script:
   - gulp
 deploy:
+  edge: true
   provider: cloudfoundry
   api: https://api.appcloud-nova.swisscom.com
   username: me@lukasmartinelli.ch

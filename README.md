@@ -57,6 +57,9 @@ socket.on('pushevent', function (event) {
 });
 ```
 
+For a short tutorial head over to
+[my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html).
+
 ## Host it yourself
 
 Install with npm.

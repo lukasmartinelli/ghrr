@@ -6,7 +6,7 @@ This is probably the simplest way to create a realtime application on top of Git
 For a short tutorial head over to
 [my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html).
 
-[![Screenshot of Github Realtime Relay](screenshot.png)](http://ghrr.gq)
+[![Screenshot of Github Realtime Relay](http://lukasmartinelli.ch/media/screenshot_ghrr_app.png)](http://ghrr.gq)
 
 ## Server (Node)
 

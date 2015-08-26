@@ -65,19 +65,10 @@ socket.on('pushevent', function (event) {
 
 ## Host it yourself
 
-Install with npm.
-
-```bash
-npm install ghrr
-```
-
 In order to poll all events you need an OAUTH access token.
 Run the github realtime relay with a poll rate of `1000` and on port `3000`.
 
 ```bash
-npm install ghrr
-export GITHUB_TOKEN="YOUR GITHUB ACCESS TOKEN"
-npm run start
+docker pull lukasmartinelli/ghrr
+docker run -e GITHUB_TOKEN="acbas3dfas.." -p 3000:3000 lukasmartinelli/ghrr
 ```
-
-Now you can visit the status page at `localhost:3000`.

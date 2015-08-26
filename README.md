@@ -1,4 +1,4 @@
-# Github Realtime Relay [![Build Status](https://travis-ci.org/lukasmartinelli/ghrr.svg)](https://travis-ci.org/lukasmartinelli/ghrr) [![Code Climate](https://codeclimate.com/github/lukasmartinelli/ghrr/badges/gpa.svg)](https://codeclimate.com/github/lukasmartinelli/ghrr) [![](https://badge.imagelayers.io/dreipol/python.svg)](https://imagelayers.io/?images=lukasmartinelli/ghrr:latest)
+# Github Realtime Relay [![Build Status](https://travis-ci.org/lukasmartinelli/ghrr.svg)](https://travis-ci.org/lukasmartinelli/ghrr) [![Code Climate](https://codeclimate.com/github/lukasmartinelli/ghrr/badges/gpa.svg)](https://codeclimate.com/github/lukasmartinelli/ghrr)
 
 Receive all Github events in realtime with [socket.io](http://socket.io/) from the [Github Realtime Relay](http://ghrr.gq).
 This is probably the simplest way to create a realtime application on top of Github.

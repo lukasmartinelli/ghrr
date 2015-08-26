@@ -5,7 +5,7 @@ This is probably the simplest way to create a realtime application on top of Git
 
 Below you see a statistics page of GitHub events built on top of [GHRR](http://ghrr.gq).
 
-[![Screenshot of GitHub Realtime Relay](http://lukasmartinelli.ch/media/screenshot_ghrr_app.png)](http://ghrr.gq)
+[![Screenshot of GitHub Realtime Relay](screenshot.gif)](http://ghrr.gq)
 
 For a short tutorial head over to
 [my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html) or continue reading.

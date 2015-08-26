@@ -1,14 +1,16 @@
-# Github Realtime Relay [![Build Status](https://travis-ci.org/lukasmartinelli/ghrr.svg)](https://travis-ci.org/lukasmartinelli/ghrr) [![Code Climate](https://codeclimate.com/github/lukasmartinelli/ghrr/badges/gpa.svg)](https://codeclimate.com/github/lukasmartinelli/ghrr)
+# GitHub Realtime Relay [![Build Status](https://travis-ci.org/lukasmartinelli/ghrr.svg)](https://travis-ci.org/lukasmartinelli/ghrr) [![Code Climate](https://codeclimate.com/github/lukasmartinelli/ghrr/badges/gpa.svg)](https://codeclimate.com/github/lukasmartinelli/ghrr)
 
-Receive all Github events in realtime with [socket.io](http://socket.io/) from the [Github Realtime Relay](http://ghrr.gq).
-This is probably the simplest way to create a realtime application on top of Github.
+Receive all GitHub events in realtime with [socket.io](http://socket.io/) from the [GitHub Realtime Relay](http://ghrr.gq).
+This is probably the simplest way to create a realtime application on top of GitHub.
+
+Below you see a statistics page of GitHub events built on top of [GHRR](http://ghrr.gq).
+
+[![Screenshot of GitHub Realtime Relay](http://lukasmartinelli.ch/media/screenshot_ghrr_app.png)](http://ghrr.gq)
 
 For a short tutorial head over to
-[my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html).
+[my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html) or continue reading.
 
-[![Screenshot of Github Realtime Relay](http://lukasmartinelli.ch/media/screenshot_ghrr_app.png)](http://ghrr.gq)
-
-## Server (Node)
+## Connect from Server (Node)
 
 Install the [socket.io-client](https://www.npmjs.org/package/socket.io-client) from npm.
 
@@ -17,7 +19,7 @@ npm install socket.io-client
 ```
 
 To receive all events you can hook onto the `/events` namespace
-and subscribe to a [specific Github Event](https://developer.github.com/v3/activity/events/types/). Please use lower case for subscribing to the event types.
+and subscribe to a [specific GitHub Event](https://developer.github.com/v3/activity/events/types/). Please use lower case for subscribing to the event types.
 
 ```javascript
 var url = 'http://ghrr.gq:80/events';
@@ -40,7 +42,7 @@ io('/statistics').on('types', function(typeCounts) {
 }
 ```
 
-## Web Application
+## Connect from Web Application
 
 You need to add the socket.io-client to your web application.
 

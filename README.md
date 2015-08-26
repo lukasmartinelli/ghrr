@@ -3,6 +3,10 @@
 Receive all Github events in realtime with [socket.io](http://socket.io/) from the [Github Realtime Relay](http://ghrr.gq).
 This is probably the simplest way to create a realtime application on top of Github.
 
+For a short tutorial head over to
+[my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html).
+
+[![Screenshot of Github Realtime Relay](screenshot.png)](http://ghrr.gq)
 
 ## Server (Node)
 
@@ -57,9 +61,6 @@ socket.on('pushevent', function (event) {
 });
 ```
 
-For a short tutorial head over to
-[my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html).
-
 ## Host it yourself
 
 Install with npm.
@@ -77,6 +78,4 @@ export GITHUB_TOKEN="YOUR GITHUB ACCESS TOKEN"
 npm run start
 ```
 
-Now you can visit the  status page displaying live statistics.
-
-![Screenshot of Github Realtime Relay](screenshot.png)
+Now you can visit the status page at `localhost:3000`.

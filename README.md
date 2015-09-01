@@ -8,7 +8,7 @@ Below you see a statistics page of GitHub events built on top of [GHRR](http://g
 [![Screenshot of GitHub Realtime Relay](screenshot.gif)](http://ghrr.gq)
 
 For a short tutorial head over to
-[my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html) or continue reading.
+[my blog post about GHRR](http://lukasmartinelli.ch/web/2015/07/29/github-realtime-relay.html) or continue reading. For a more sophisticated usage example checkout my other project [delptr](http://github.com/lukasmartinelli/delptr), which lints all C++ commits in realtime.
 
 ## Connect from Server (Node)
 

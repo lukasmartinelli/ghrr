@@ -24,7 +24,7 @@
                 <h3>Connect from Server (Node)</h3>
                 <pre>
                     <code class="javascript">
-var url = 'ghrr.gq:80/events';
+var url = 'ghrr.lukasmartinelli.ch:80/events';
 var socket = require('socket.io-client')(url);
 
 socket.on('pushevent', function(event){
@@ -40,7 +40,7 @@ socket.on('pushevent', function(event){
                 <h3>Connect from Web Application</h3>
                 <pre>
                     <code class="javascript">
-var url = 'http://ghrr.gq:80/events';
+var url = 'http://ghrr.lukasmartinelli.ch:80/events';
 var socket = io(url);
 
 socket.on('pushevent', function (event) {

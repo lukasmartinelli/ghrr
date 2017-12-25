@@ -1,5 +1,7 @@
 # GitHub Realtime Relay [![Build Status](https://travis-ci.org/lukasmartinelli/ghrr.svg)](https://travis-ci.org/lukasmartinelli/ghrr) [![Code Climate](https://codeclimate.com/github/lukasmartinelli/ghrr/badges/gpa.svg)](https://codeclimate.com/github/lukasmartinelli/ghrr)
 
+> :warning: This repository is no longer maintained by Lukas Martinelli.
+
 Receive all GitHub events in realtime with [socket.io](http://socket.io/) from the [GitHub Realtime Relay](http://ghrr.lukasmartinelli.ch) which polls all public events and then relays them directly via websockets. 
 This is probably the simplest way to create a realtime application on top of GitHub.
 
